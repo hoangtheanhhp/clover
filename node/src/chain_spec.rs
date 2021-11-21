@@ -135,7 +135,7 @@ pub fn development_config() -> Result<ChainSpec, String> {
     // Properties
     Some(json!({
       "tokenDecimals": 18,
-      "tokenSymbol": "CLV"
+      "tokenSymbol": "WID"
     }).as_object().expect("Created an object").clone()),
     // Extensions
     None,
@@ -147,7 +147,7 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
 
   Ok(ChainSpec::from_genesis(
     // Name
-    "Clover",
+    "WinDEX",
     // ID
     "local_testnet",
     ChainType::Local,
@@ -187,7 +187,7 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
     // Properties
     Some(json!({
       "tokenDecimals": 18,
-      "tokenSymbol": "CLV"
+      "tokenSymbol": "WID"
     }).as_object().expect("Created an object").clone()),
     // Extensions
     None,
@@ -199,7 +199,7 @@ pub fn local_rose_testnet_config() -> Result<ChainSpec, String> {
 
   Ok(ChainSpec::from_genesis(
     // Name
-    "Clover",
+    "WinDEX",
     // ID
     "rose",
     ChainType::Custom(String::from("rose")),
@@ -278,7 +278,7 @@ pub fn local_rose_testnet_config() -> Result<ChainSpec, String> {
     // Properties
     Some(json!({
       "tokenDecimals": 18,
-      "tokenSymbol": "CLV"
+      "tokenSymbol": "WID"
     }).as_object().expect("Created an object").clone()),
     // Extensions
     None,
@@ -290,7 +290,7 @@ pub fn iris_testnet_config() -> Result<ChainSpec, String> {
 
   Ok(ChainSpec::from_genesis(
     // Name
-    "Clover",
+    "WinDEX",
     // ID
     "iris",
     ChainType::Custom(String::from("iris")),
@@ -369,7 +369,7 @@ pub fn iris_testnet_config() -> Result<ChainSpec, String> {
     // Properties
     Some(json!({
       "tokenDecimals": 18,
-      "tokenSymbol": "CLV"
+      "tokenSymbol": "WID"
     }).as_object().expect("Created an object").clone()),
     // Extensions
     None,

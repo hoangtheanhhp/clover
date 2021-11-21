@@ -370,7 +370,7 @@ impl FeeCalculator for FixedGasPrice {
         50_000_000_000u64.into()
     }
 }
-
+const CHAIN_ID: u64 = 1000;
 #[cfg(feature = "clover-mainnet")]
 const CHAIN_ID: u64 = 1024;
 #[cfg(feature = "clover-testnet")]
