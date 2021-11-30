@@ -67,6 +67,9 @@ pub use primitives::{
     Index, Moment, Price, Rate, Share, Signature,
 };
 
+/// Import the offchain-worker pallet.
+pub use pallet_offchain_worker;
+
 pub use constants::time::*;
 use impls::{Author, MergeAccountEvm, WeightToFee};
 
@@ -1036,6 +1039,26 @@ impl clover_evm_interop::Config for Runtime {
 }
 
 parameter_types! {
+	pub const QueryTaskRedundancy: u32 = 3;
+	pub const QuerySessionLength: u32 = 5;
+	pub const OcwQueryReward: Balance = 1 * DOLLARS;
+}
+
+/// Configure the template pallet in pallets/template.
+impl pallet_offchain_worker::Config for Runtime {
+	type Event = Event;
+	type Call = Call;
+	type Balance = Balance;
+	type AuthorityId = pallet_offchain_worker::crypto::TestAuthId;
+	type QueryTaskRedundancy = QueryTaskRedundancy;
+	type QuerySessionLength = QuerySessionLength;
+	type Currency = Balances;
+	type Reward = ();
+	type OcwQueryReward = OcwQueryReward;
+	type WeightInfo = pallet_offchain_worker::weights::SubstrateWeight<Runtime>;
+}
+
+parameter_types! {
   pub const GetStableCurrencyId: CurrencyId = CurrencyId::CUSDT;
   pub StableCurrencyFixedPrice: Price = Price::saturating_from_rational(1, 1);
   pub const MinimumCount: u32 = 1;
@@ -1102,6 +1125,8 @@ construct_runtime!(
 
     CloverClaims: clover_claims::{Module, Call, Storage, Event<T>, ValidateUnsigned},
     CloverEvminterop: clover_evm_interop::{Module, Call, Storage, Event<T>},
+
+    OffchainWorkerModule: pallet_offchain_worker::{Module, Call, Storage, Event<T>},
   }
 );
 
