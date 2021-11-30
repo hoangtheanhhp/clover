@@ -21,6 +21,7 @@ fp-rpc = { git = "https://github.com/clover-network/frontier.git", tag = "v2.0.1
 evm-accounts = { path = "../modules/evm-accounts", default-features = false }
 clover-claims = { path = "../modules/claims", default-features = false }
 clover-evm-interop = { path = "../modules/evm-interop", default-features = false }
+pallet-nft = { path = "../modules/nft", default-features = false }
 primitives = { default-features = false, package = 'clover-primitives', path = '../primitives', version = '0.9.0'}
 
 enum-iterator = "0.6.0"
@@ -144,6 +145,7 @@ std = [
     "clover-claims/std",
     "clover-evm-interop/std",
     "evm-accounts/std",
+    "pallet-nft/std"
 ]
 clover-testnet = []
 clover-mainnet = []

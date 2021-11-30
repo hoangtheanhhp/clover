@@ -1036,6 +1036,18 @@ impl clover_evm_interop::Config for Runtime {
 }
 
 parameter_types! {
+
+}
+
+impl pallet_nft::Config for Runtime {
+    type Event = Event;
+    type Currency = Balances;
+    type WeightInfo = pallet_nft::weights::SubstrateWeight<Runtime>;;
+    type ClassCreationFee = ClassCreationFee;
+    type Pot = Pot;
+}
+
+parameter_types! {
   pub const GetStableCurrencyId: CurrencyId = CurrencyId::CUSDT;
   pub StableCurrencyFixedPrice: Price = Price::saturating_from_rational(1, 1);
   pub const MinimumCount: u32 = 1;
@@ -1102,6 +1114,7 @@ construct_runtime!(
 
     CloverClaims: clover_claims::{Module, Call, Storage, Event<T>, ValidateUnsigned},
     CloverEvminterop: clover_evm_interop::{Module, Call, Storage, Event<T>},
+    NFT: pallet_nft::{Module, Call, Storage, Event<T>},
   }
 );
 
