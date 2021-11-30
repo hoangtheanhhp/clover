@@ -67,6 +67,10 @@ pub use primitives::{
     Index, Moment, Price, Rate, Share, Signature,
 };
 
+/// Import the account-linker pallet.
+pub use pallet_account_linker;
+
+
 pub use constants::time::*;
 use impls::{Author, MergeAccountEvm, WeightToFee};
 
@@ -1035,6 +1039,12 @@ impl clover_evm_interop::Config for Runtime {
     type AddressMapping = EvmAddressMapping<Runtime>;
 }
 
+impl pallet_account_linker::Config for Runtime {
+	type Event = Event;
+	type WeightInfo = pallet_account_linker::weights::SubstrateWeight<Runtime>;
+}
+
+
 parameter_types! {
   pub const GetStableCurrencyId: CurrencyId = CurrencyId::CUSDT;
   pub StableCurrencyFixedPrice: Price = Price::saturating_from_rational(1, 1);
@@ -1102,6 +1112,9 @@ construct_runtime!(
 
     CloverClaims: clover_claims::{Module, Call, Storage, Event<T>, ValidateUnsigned},
     CloverEvminterop: clover_evm_interop::{Module, Call, Storage, Event<T>},
+
+    // Include the custom logic from the template pallet in the runtime.
+		AccountLinkerModule: pallet_account_linker::{Module, Call, Storage, Event<T>},
   }
 );
 
